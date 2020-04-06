@@ -1,0 +1,86 @@
+server:
+  port: 8888
+  servlet:
+    context-path: /crud
+    session:
+      timeout: 60s #默认半小时？
+
+spring:
+  security:
+    loginType: JSON_
+  datasource:
+    username: root
+    password: 50283046
+    url: jdbc:mysql://localhost:3306/db1?serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    #Spring Boot 默认是不注入这些属性值的，需要自己绑定
+    #druid 数据源专有配置
+    druid:
+      username: root
+      password: 50823046
+      #还要再次把数据库的登录信息告诉数据源
+      url: jdbc:mysql://localhost:3306/db1?serverTimezone=UTC
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      #配置监控统计拦截的filters，stat:监控统计、log4j：日志记录、wall：防御sql注入
+      #如果允许时报错  java.lang.ClassNotFoundException: org.apache.log4j.Priority
+      #则导入 log4j 依赖即可，Maven 地址： https://mvnrepository.com/artifact/log4j/log4j
+#      filters: stat,wall,log4j
+#      maxPoolPreparedStatementPerConnectionSize: 20
+#      use-global-data-source-stat: true
+#      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: admin
+        url-pattern: /druid/*
+        allow: 127.0.0.1
+        reset-enable:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  redis:
+    host: 127.0.0.1
+  application:
+    name: provider
+hello:
+  prefix: "prefix"
+  suffix: "suffix"
+#  某个包下的类的debug等级
+logging:
+  level:
+#    查看sql查询信息
+    com.refactor.demo.Dao: debug
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+#    spring的debug模式
+#debug: true
+
+eureka:
+  client:
+    #    获取微服务
+    fetch-registry: on
+    #    注册微服务
+    register-with-eureka: on
+    #    注册中心地址
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  #要访问http://${eureka.instance.hostname}:${server.port}，坑爹
+  instance:
+    #    微服务的实例id
+    instance-id: provider-8888
+    prefer-ip-address: on
