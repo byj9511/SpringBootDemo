@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 //@FeignClient(name="DEPT-PROVIDER")
 @Service
 //要用interface和mybatis有点像
-public interface ConsumerDeptService {
+public interface ConsumerService {
     //方法名随意，重要的地址和服务名（restTemplate需要？）
     @GetMapping("provider/dept/{id}")
     Dept getDeptByid(@PathVariable("id") int id);

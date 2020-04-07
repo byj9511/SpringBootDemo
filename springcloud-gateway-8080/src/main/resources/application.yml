@@ -1,0 +1,35 @@
+server:
+  port: 8080
+
+eureka:
+  instance:
+    prefer-ip-address: true
+
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+
+spring:
+  application:
+    name: springcloud-gateway
+  cloud:
+    gateway:
+      routes:
+#        - id: gateway-9527-1
+#          uri: http://localhost:8081
+#          predicates:
+#            - Path=/provider/dept/**
+#          **表示匹配任意字符都能访问到
+
+#          改进成动态访问
+        - id: gateway-8888
+          uri: lb://PROVIDER
+          predicates:
+            - Path=/**
+
+      discovery:
+        locator:
+          enabled: true
+#          从注册中心创建路由

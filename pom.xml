@@ -13,6 +13,7 @@
         <module>springcloud-provider-8888</module>
         <module>springcloud-consumer-7777</module>
         <module>springcloud-api</module>
+        <module>springcloud-gateway-8080</module>
     </modules>
     <!--    1、pom表示jar不进行打包，maven文件作为父级依赖-->
     <packaging>pom</packaging>
