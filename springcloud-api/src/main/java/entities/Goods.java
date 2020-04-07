@@ -18,6 +18,7 @@ public class Goods {
 
     private String name;
     @Version
+    //乐观锁
     @TableField(fill= FieldFill.INSERT)
     private Long version;
 }

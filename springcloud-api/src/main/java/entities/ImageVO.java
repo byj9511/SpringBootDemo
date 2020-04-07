@@ -1,15 +1,15 @@
-package com.refactor.demo.componet;
+package entities;
 
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
-public class ImageVo {
+public class ImageVO {
     private String text;
     private LocalDateTime expireTime;
 
-    public ImageVo(String text, Long duration) {
+    public ImageVO(String text, Long duration) {
         this.text = text;
         this.expireTime = LocalDateTime.now().plusSeconds(duration);
     }

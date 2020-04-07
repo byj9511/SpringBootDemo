@@ -1,6 +1,6 @@
 package com.refactor.demo.auth;
 
-import com.refactor.demo.componet.ImageVo;
+import entities.ImageVO;
 import io.netty.util.internal.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.session.SessionAuthenticationException;
@@ -47,7 +47,7 @@ public class ImageAuthenticationFilter extends OncePerRequestFilter {
     public void validate(HttpServletRequest request){
         HttpSession session = request.getSession();
         String number=request.getParameter("captchaCode");
-        ImageVo imageVo = (ImageVo)session.getAttribute("image");
+        ImageVO imageVo = (ImageVO)session.getAttribute("image");
         if (imageVo.isExpire()) throw new SessionAuthenticationException("验证码超时");
         if (StringUtil.isNullOrEmpty(number)) throw new SessionAuthenticationException("验证码为空");
         if (!number.equals(imageVo.getText())) throw new SessionAuthenticationException("验证码错误");

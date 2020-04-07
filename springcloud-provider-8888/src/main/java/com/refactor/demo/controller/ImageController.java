@@ -1,7 +1,7 @@
 package com.refactor.demo.controller;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
-import com.refactor.demo.componet.ImageVo;
+import entities.ImageVO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +22,7 @@ public class ImageController {
         String text = captchaProducer.createText();
         //根据文本生成图片缓冲
         BufferedImage image = captchaProducer.createImage(text);
-        ImageVo imageVo = new ImageVo(text, (long) 60);
+        ImageVO imageVo = new ImageVO(text, (long) 60);
         session.setAttribute("image", imageVo);
         //try()能自动管理资源的释放
         try(ServletOutputStream outputStream = response.getOutputStream()){

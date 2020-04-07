@@ -1,4 +1,4 @@
-package com.refactor.demo.lock;
+package lock;
 
 import java.util.concurrent.TimeUnit;
 

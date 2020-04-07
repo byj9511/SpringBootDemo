@@ -1,5 +1,6 @@
 package com.refactor.demo.lock;
 
+import lock.RedisLock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 
